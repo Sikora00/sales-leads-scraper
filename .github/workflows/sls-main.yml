@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +25,57 @@ jobs:
         run: npm ci
       - name: affected:build
         run: npm run affected:build -- --parallel --all --prod
-    env:
-      CI: true
-      NX_BRANCH: ${{ github.event.number }}
-      NX_RUN_GROUP: ${{ github.run_id }}
+
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci
+      - name: affected:lint
+        run: npm run affected:lint -- --parallel --all
+        env:
+          CI: true
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci
+      - name: affected:test
+        run: npm run affected:test -- --parallel --all
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: checkout
+        run: git checkout main
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci
+      - name: validate nx tags
+        run: node ./node_modules/@valueadd/dev validate-nx-tags
+      - name: prettier check
+        run: npm run format:check
