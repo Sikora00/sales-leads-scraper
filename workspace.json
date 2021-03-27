@@ -54,6 +54,17 @@
             "jestConfig": "apps/sales-leads-scraper/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx build",
+              "npm install --prefix dist/apps/sales-leads-scraper serverless-google-cloudfunctions reflect-metadata tslib rxjs firebase-admin",
+              "npm install --prefix dist/apps/sales-leads-scraper"
+            ],
+            "parallel": false
+          }
         }
       }
     }
