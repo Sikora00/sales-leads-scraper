@@ -18,7 +18,8 @@
             "outputPath": "dist/apps/sales-leads-scraper",
             "main": "apps/sales-leads-scraper/src/main.ts",
             "tsConfig": "apps/sales-leads-scraper/tsconfig.app.json",
-            "assets": ["apps/sales-leads-scraper/src/assets"]
+            "assets": ["apps/sales-leads-scraper/src/assets"],
+            "generatePackageJson": true
           },
           "configurations": {
             "production": {
