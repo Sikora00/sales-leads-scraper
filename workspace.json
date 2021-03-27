@@ -60,8 +60,7 @@
           "options": {
             "commands": [
               "nx build",
-              "npm install --prefix dist/apps/sales-leads-scraper serverless-google-cloudfunctions reflect-metadata tslib rxjs firebase-admin",
-              "npm install --prefix dist/apps/sales-leads-scraper"
+              "npx add-dependencies dist/apps/sales-leads-scraper/package.json serverless-google-cloudfunctions@3.1.1 reflect-metadata@0.1.13 tslib@2.1.0 rxjs@6.6.6 firebase-admin@9.5.0"
             ],
             "parallel": false
           }
