@@ -79,3 +79,22 @@ jobs:
         run: node ./node_modules/@valueadd/dev validate-nx-tags
       - name: prettier check
         run: npm run format:check
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: prepare for deploy
+        run: npm ci && npm run nx deploy
+      - uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: salesLeadsScraper
+          runtime: nodejs12
+          credentials: ${{ secrets.GOOGLE_CLOUD_KEY }}
+          project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
+          source_dir: ./dist/apps/sales-leads-scraper

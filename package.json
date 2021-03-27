@@ -8,6 +8,7 @@
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
+    "deploy:prepare": "npm run build && cd dist/apps/sales-leads-scraper && npm install serverless-google-cloudfunctions reflect-metadata tslib rxjs firebase-admin",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
