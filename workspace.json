@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "sales-leads-scraper",
+  "projects": {
+    "sales-leads-scraper": {
+      "root": "apps/sales-leads-scraper",
+      "sourceRoot": "apps/sales-leads-scraper/src",
+      "projectType": "application",
+      "prefix": "sales-leads-scraper",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/sales-leads-scraper",
+            "main": "apps/sales-leads-scraper/src/main.ts",
+            "tsConfig": "apps/sales-leads-scraper/tsconfig.app.json",
+            "assets": ["apps/sales-leads-scraper/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/sales-leads-scraper/src/environments/environment.ts",
+                  "with": "apps/sales-leads-scraper/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "sales-leads-scraper:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sales-leads-scraper/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sales-leads-scraper"],
+          "options": {
+            "jestConfig": "apps/sales-leads-scraper/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}
