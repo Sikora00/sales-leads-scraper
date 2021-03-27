@@ -13,7 +13,7 @@
   "affected": {
     "defaultBase": "main"
   },
-  "npmScope": "maciej-sikorski",
+  "npmScope": "sales-leads",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
