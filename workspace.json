@@ -30,7 +30,8 @@
                   "replace": "apps/sales-leads-scraper/src/environments/environment.ts",
                   "with": "apps/sales-leads-scraper/src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "generatePackageJson": true
             }
           }
         },
@@ -59,8 +60,7 @@
           "options": {
             "commands": [
               "nx build --prod",
-              "cp package.json ./dist/apps/sales-leads-scraper/package.json",
-              "cp package-lock.json ./dist/apps/sales-leads-scraper/package-lock.json"
+              "npx add-dependencies dist/apps/sales-leads-scraper/package.json serverless-google-cloudfunctions@3.1.1 reflect-metadata@0.1.13 tslib@2.1.0 rxjs@6.6.6 firebase-admin@9.5.0"
             ],
             "parallel": false
           }
