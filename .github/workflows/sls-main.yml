@@ -133,3 +133,4 @@ jobs:
           credentials: ${{ secrets.GOOGLE_CLOUD_KEY }}
           project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           source_dir: ./dist/apps/sales-leads-scraper
+          env_vars: IS_IN_CLOUD=true
