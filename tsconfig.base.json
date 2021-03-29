@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@sales-leads/shared/infrastructure-gcp-logger": [
+        "libs/shared/infrastructure-gcp-logger/src/index.ts"
+      ],
+      "@sales-leads/shared/application": [
+        "libs/shared/application/src/index.ts"
+      ],
+      "@sales-leads/sales-leads-scraper/kernel": [
+        "libs/sales-leads-scraper/kernel/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

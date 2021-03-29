@@ -12,7 +12,28 @@
             "enforceBuildableLibDependency": true,
             "allow": [],
             "depConstraints": [
-              { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
+              {
+                "sourceTag": "scope:sales-leads-scraper",
+                "onlyDependOnLibsWithTags": [
+                  "scope:sales-leads-scraper",
+                  "scope:shared"
+                ]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:kernel"]
+              },
+              {
+                "sourceTag": "type:infrastructure",
+                "onlyDependOnLibsWithTags": [
+                  "type:application",
+                  "type:infrastructure"
+                ]
+              },
+              {
+                "sourceTag": "type:kernel",
+                "onlyDependOnLibsWithTags": ["type:infrastructure"]
+              }
             ]
           }
         ]

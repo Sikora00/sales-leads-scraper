@@ -63,6 +63,104 @@
           }
         }
       }
+    },
+    "shared-infrastructure-gcp-logger": {
+      "root": "libs/shared/infrastructure-gcp-logger",
+      "sourceRoot": "libs/shared/infrastructure-gcp-logger/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/infrastructure-gcp-logger/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/infrastructure-gcp-logger"],
+          "options": {
+            "jestConfig": "libs/shared/infrastructure-gcp-logger/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/shared/infrastructure-gcp-logger",
+            "tsConfig": "libs/shared/infrastructure-gcp-logger/tsconfig.lib.json",
+            "packageJson": "libs/shared/infrastructure-gcp-logger/package.json",
+            "main": "libs/shared/infrastructure-gcp-logger/src/index.ts",
+            "assets": ["libs/shared/infrastructure-gcp-logger/*.md"]
+          }
+        }
+      }
+    },
+    "shared-application": {
+      "root": "libs/shared/application",
+      "sourceRoot": "libs/shared/application/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/application/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/application"],
+          "options": {
+            "jestConfig": "libs/shared/application/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/shared/application",
+            "tsConfig": "libs/shared/application/tsconfig.lib.json",
+            "packageJson": "libs/shared/application/package.json",
+            "main": "libs/shared/application/src/index.ts",
+            "assets": ["libs/shared/application/*.md"]
+          }
+        }
+      }
+    },
+    "sales-leads-scraper-kernel": {
+      "root": "libs/sales-leads-scraper/kernel",
+      "sourceRoot": "libs/sales-leads-scraper/kernel/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/sales-leads-scraper/kernel/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/sales-leads-scraper/kernel"],
+          "options": {
+            "jestConfig": "libs/sales-leads-scraper/kernel/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-scraper/kernel",
+            "tsConfig": "libs/sales-leads-scraper/kernel/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-scraper/kernel/package.json",
+            "main": "libs/sales-leads-scraper/kernel/src/index.ts",
+            "assets": ["libs/sales-leads-scraper/kernel/*.md"]
+          }
+        }
+      }
     }
   }
 }

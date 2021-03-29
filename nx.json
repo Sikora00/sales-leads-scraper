@@ -1,18 +1,13 @@
 {
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {
-    "defaultBase": "main"
-  },
+  "affected": { "defaultBase": "main" },
   "npmScope": "sales-leads",
   "tasksRunnerOptions": {
     "default": {
@@ -26,8 +21,13 @@
     }
   },
   "projects": {
-    "sales-leads-scraper": {
-      "tags": []
+    "sales-leads-scraper": { "tags": ["type:app"] },
+    "shared-infrastructure-gcp-logger": {
+      "tags": ["scope:shared", "type:infrastructure"]
+    },
+    "shared-application": { "tags": ["scope:shared", "type:application"] },
+    "sales-leads-scraper-kernel": {
+      "tags": ["scope:sales-leads-scraper", "type:kernel"]
     }
   }
 }
