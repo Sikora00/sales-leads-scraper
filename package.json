@@ -54,12 +54,14 @@
   },
   "dependencies": {
     "@nestjs/common": "7.6.15",
+    "@nestjs/config": "^0.6.3",
     "@nestjs/core": "7.6.15",
     "@nestjs/platform-express": "7.6.15",
     "firebase-admin": "9.5.0",
     "firebase-functions": "3.13.2",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.6",
-    "tslib": "2.1.0"
+    "tslib": "2.1.0",
+    "winston": "^3.3.3"
   }
 }
