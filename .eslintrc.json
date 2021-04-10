@@ -13,6 +13,13 @@
             "allow": [],
             "depConstraints": [
               {
+                "sourceTag": "scope:sales-leads-acquisition",
+                "onlyDependOnLibsWithTags": [
+                  "scope:sales-leads-acquisition",
+                  "scope:shared"
+                ]
+              },
+              {
                 "sourceTag": "scope:sales-leads-scraper",
                 "onlyDependOnLibsWithTags": [
                   "scope:sales-leads-scraper",
@@ -20,8 +27,20 @@
                 ]
               },
               {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
                 "sourceTag": "type:app",
                 "onlyDependOnLibsWithTags": ["type:kernel"]
+              },
+              {
+                "sourceTag": "type:application",
+                "onlyDependOnLibsWithTags": ["type:application", "type:domain"]
+              },
+              {
+                "sourceTag": "type:domain",
+                "onlyDependOnLibsWithTags": ["type:domain"]
               },
               {
                 "sourceTag": "type:infrastructure",

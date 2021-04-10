@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SalesLead when sales lead is acquired should know its name, website, country, industry, company size, source advertisement, advertisement title and city 1`] = `
+SalesLead {
+  "city": City {
+    "type": Symbol(),
+    "value": "Warsaw",
+  },
+  "companySize": CompanySize {
+    "type": Symbol(),
+    "value": "50-100",
+  },
+  "companyWebsite": Url {
+    "type": Symbol(),
+    "value": "https://valueadd.pl/",
+  },
+  "country": Country {
+    "type": Symbol(),
+    "value": "Poland",
+  },
+  "industry": Industry {
+    "type": Symbol(),
+    "value": "Software Development",
+  },
+  "name": "ValueAdd",
+  "sourceAdvertisement": SourceAdvertisement {
+    "title": "NestJS Developer",
+    "type": Symbol(),
+    "url": Url {
+      "type": Symbol(),
+      "value": "https://just-join-it.com/",
+    },
+  },
+  Symbol(): false,
+  Symbol(): Array [],
+}
+`;

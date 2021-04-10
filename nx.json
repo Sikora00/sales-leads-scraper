@@ -28,6 +28,13 @@
     "shared-application": { "tags": ["scope:shared", "type:application"] },
     "sales-leads-scraper-kernel": {
       "tags": ["scope:sales-leads-scraper", "type:kernel"]
-    }
+    },
+    "sales-leads-acquisition-domain": {
+      "tags": ["scope:sales-leads-acquisition", "type:domain"]
+    },
+    "sales-leads-acquisition-application": {
+      "tags": ["scope:sales-leads-acquisition", "type:application"]
+    },
+    "shared-domain": { "tags": ["scope:shared", "type:domain"] }
   }
 }
