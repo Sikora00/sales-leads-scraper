@@ -161,6 +161,104 @@
           }
         }
       }
+    },
+    "sales-leads-acquisition-domain": {
+      "root": "libs/sales-leads-acquisition/domain",
+      "sourceRoot": "libs/sales-leads-acquisition/domain/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/sales-leads-acquisition/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/sales-leads-acquisition/domain"],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-acquisition/domain",
+            "tsConfig": "libs/sales-leads-acquisition/domain/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/domain/package.json",
+            "main": "libs/sales-leads-acquisition/domain/src/index.ts",
+            "assets": ["libs/sales-leads-acquisition/domain/*.md"]
+          }
+        }
+      }
+    },
+    "sales-leads-acquisition-application": {
+      "root": "libs/sales-leads-acquisition/application",
+      "sourceRoot": "libs/sales-leads-acquisition/application/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sales-leads-acquisition/application/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/sales-leads-acquisition/application"],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/application/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-acquisition/application",
+            "tsConfig": "libs/sales-leads-acquisition/application/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/application/package.json",
+            "main": "libs/sales-leads-acquisition/application/src/index.ts",
+            "assets": ["libs/sales-leads-acquisition/application/*.md"]
+          }
+        }
+      }
+    },
+    "shared-domain": {
+      "root": "libs/shared/domain",
+      "sourceRoot": "libs/shared/domain/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/domain"],
+          "options": {
+            "jestConfig": "libs/shared/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/shared/domain",
+            "tsConfig": "libs/shared/domain/tsconfig.lib.json",
+            "packageJson": "libs/shared/domain/package.json",
+            "main": "libs/shared/domain/src/index.ts",
+            "assets": ["libs/shared/domain/*.md"]
+          }
+        }
+      }
     }
   }
 }

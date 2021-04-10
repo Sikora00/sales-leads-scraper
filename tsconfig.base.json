@@ -10,7 +10,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2020", "es2020.promise", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -23,7 +23,14 @@
       ],
       "@sales-leads/sales-leads-scraper/kernel": [
         "libs/sales-leads-scraper/kernel/src/index.ts"
-      ]
+      ],
+      "@sales-leads/sales-leads-acquisition/domain": [
+        "libs/sales-leads-acquisition/domain/src/index.ts"
+      ],
+      "@sales-leads/sales-leads-acquisition/application": [
+        "libs/sales-leads-acquisition/application/src/index.ts"
+      ],
+      "@sales-leads/shared/domain": ["libs/shared/domain/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
