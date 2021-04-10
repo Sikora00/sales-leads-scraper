@@ -1,10 +1,10 @@
-import {FindNewSalesLeadsHandler} from './find-new-sales-leads.handler';
-import {Test, TestingModule} from '@nestjs/testing';
-import {SalesLeadsRepository} from '../../ports/sales-leads.repository';
-import {CqrsModule, EventBus, EventPublisher} from '@nestjs/cqrs';
-import {createSpyObj} from 'jest-createspyobj';
-import {SalesLeadsFindersToken} from '../../ports/sales-leads-finder';
-import {FindNewSalesLeadsCommand} from "./find-new-sales-leads.command";
+import { FindNewSalesLeadsHandler } from './find-new-sales-leads.handler';
+import { Test, TestingModule } from '@nestjs/testing';
+import { SalesLeadRepository } from '../../ports/sales-lead.repository';
+import { CqrsModule, EventBus } from '@nestjs/cqrs';
+import { createSpyObj } from 'jest-createspyobj';
+import { SalesLeadsFindersToken } from '../../ports/sales-leads-finder';
+import { FindNewSalesLeadsCommand } from './find-new-sales-leads.command';
 
 describe('FindNewSalesLeadsHandler', () => {
   let out: FindNewSalesLeadsHandler;
@@ -13,10 +13,10 @@ describe('FindNewSalesLeadsHandler', () => {
     beforeAll(async () => {
       sandbox = await fixture.get10NewSalesLeadsSandbox();
       out = sandbox.get(FindNewSalesLeadsHandler);
-      await out.execute(new FindNewSalesLeadsCommand())
+      await out.execute(new FindNewSalesLeadsCommand());
     });
     it('should save all of them', () => {
-      expect(sandbox.get(SalesLeadsRepository).save).toHaveBeenCalledTimes(10);
+      expect(sandbox.get(SalesLeadRepository).save).toHaveBeenCalledTimes(10);
     });
     it('should publish an event about each sales lead and a summary event', () => {
       expect(sandbox.get(EventBus).publish).toHaveBeenCalledTimes(11);
@@ -31,11 +31,17 @@ const fixture = {
       providers: [
         FindNewSalesLeadsHandler,
         {
-          provide: SalesLeadsRepository,
-          useValue: createSpyObj(SalesLeadsRepository, ['save']),
+          provide: SalesLeadRepository,
+          useValue: createSpyObj(SalesLeadRepository, ['save']),
         },
-        {provide: SalesLeadsFindersToken, useValue: [{find: () => Promise.resolve(new Array(10).fill({}))}]},
+        {
+          provide: SalesLeadsFindersToken,
+          useValue: [{ find: () => Promise.resolve(new Array(10).fill({})) }],
+        },
       ],
-    }).overrideProvider(EventBus).useValue(createSpyObj(EventBus)).compile();
+    })
+      .overrideProvider(EventBus)
+      .useValue(createSpyObj(EventBus))
+      .compile();
   },
 };

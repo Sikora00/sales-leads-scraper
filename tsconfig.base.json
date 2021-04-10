@@ -30,7 +30,19 @@
       "@sales-leads/sales-leads-acquisition/application": [
         "libs/sales-leads-acquisition/application/src/index.ts"
       ],
-      "@sales-leads/shared/domain": ["libs/shared/domain/src/index.ts"]
+      "@sales-leads/shared/domain": ["libs/shared/domain/src/index.ts"],
+      "@sales-leads/sales-leads-acquisition/infrastructure-mikro-orm": [
+        "libs/sales-leads-acquisition/infrastructure-mikro-orm/src/index.ts"
+      ],
+      "@sales-leads/sales-leads-acquisition/shell": [
+        "libs/sales-leads-acquisition/shell/src/index.ts"
+      ],
+      "@sales-leads/sales-leads-acquisition/ui-cloud-function": [
+        "libs/sales-leads-acquisition/ui-cloud-function/src/index.ts"
+      ],
+      "@sales-leads/shared/domain-technical": [
+        "libs/shared/domain-technical/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

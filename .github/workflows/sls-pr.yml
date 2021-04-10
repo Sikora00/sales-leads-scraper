@@ -30,6 +30,29 @@ jobs:
       - name: affected:build
         run: npm run affected:build -- --base origin/main --prod
 
+  integration:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: load npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: npm install
+        run: npm ci
+      - name: affected:test
+        run: npm run affected:integration -- --parallel --base origin/main
+
   lint:
     runs-on: ubuntu-latest
     strategy:

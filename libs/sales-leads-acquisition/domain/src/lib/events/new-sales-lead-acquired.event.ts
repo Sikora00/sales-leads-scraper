@@ -1,4 +1,1 @@
-export class NewSalesLeadAcquiredEvent {
-  constructor() {
-  }
-}
+export class NewSalesLeadAcquiredEvent {}

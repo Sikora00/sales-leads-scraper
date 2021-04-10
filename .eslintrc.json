@@ -32,7 +32,7 @@
               },
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:kernel"]
+                "onlyDependOnLibsWithTags": ["type:kernel", "type:ui"]
               },
               {
                 "sourceTag": "type:application",
@@ -46,6 +46,7 @@
                 "sourceTag": "type:infrastructure",
                 "onlyDependOnLibsWithTags": [
                   "type:application",
+                  "type:domain",
                   "type:infrastructure"
                 ]
               },

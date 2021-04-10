@@ -1,4 +1,3 @@
 export class NewSalesLeadsAcquiredEvent {
-  constructor(private readonly numberOfNewSalesLeads: number) {
-  }
+  constructor(private readonly numberOfNewSalesLeads: number) {}
 }

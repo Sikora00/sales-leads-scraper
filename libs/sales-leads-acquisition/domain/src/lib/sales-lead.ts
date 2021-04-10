@@ -1,11 +1,11 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Url } from './value-objects/url';
+import { Url } from '@sales-leads/shared/domain-technical';
 import { Country } from './value-objects/country';
 import { Industry } from './value-objects/industry';
 import { CompanySize } from './value-objects/company-size';
 import { SourceAdvertisement } from './value-objects/source-advertisement';
 import { City } from './value-objects/city';
-import {NewSalesLeadAcquiredEvent} from "./events/new-sales-lead-acquired.event";
+import { NewSalesLeadAcquiredEvent } from './events/new-sales-lead-acquired.event';
 
 export class SalesLead extends AggregateRoot {
   private city: City;
@@ -29,8 +29,40 @@ export class SalesLead extends AggregateRoot {
 
   static acquired(data: SalesLeadData): SalesLead {
     const salesLead = new SalesLead(data);
-    salesLead.apply(new NewSalesLeadAcquiredEvent())
-    return salesLead
+    salesLead.apply(new NewSalesLeadAcquiredEvent());
+    return salesLead;
+  }
+
+  static restore(data: SalesLeadData): SalesLead {
+    return new SalesLead(data);
+  }
+
+  getCity(): City {
+    return this.city;
+  }
+
+  getCompanySize(): CompanySize {
+    return this.companySize;
+  }
+
+  getCompanyWebsite(): Url {
+    return this.companyWebsite;
+  }
+
+  getCountry(): Country {
+    return this.country;
+  }
+
+  getIndustry(): Industry {
+    return this.industry;
+  }
+
+  getName(): string {
+    return this.name;
+  }
+
+  getSourceAdvertisement(): SourceAdvertisement {
+    return this.sourceAdvertisement;
   }
 }
 

@@ -35,6 +35,16 @@
     "sales-leads-acquisition-application": {
       "tags": ["scope:sales-leads-acquisition", "type:application"]
     },
-    "shared-domain": { "tags": ["scope:shared", "type:domain"] }
+    "shared-domain": { "tags": ["scope:shared", "type:domain"] },
+    "sales-leads-acquisition-infrastructure-mikro-orm": {
+      "tags": ["scope:sales-leads-acquisition", "type:infrastructure"]
+    },
+    "sales-leads-acquisition-shell": {
+      "tags": ["scope:sales-leads-acquisition", "type:shell"]
+    },
+    "sales-leads-acquisition-ui-cloud-function": {
+      "tags": ["scope:sales-leads-acquisition", "type:ui"]
+    },
+    "shared-domain-technical": { "tags": ["scope:shared", "type:domain"] }
   }
 }

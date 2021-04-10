@@ -7,5 +7,9 @@ module.exports = {
     '<rootDir>/libs/sales-leads-acquisition/domain',
     '<rootDir>/libs/sales-leads-acquisition/application',
     '<rootDir>/libs/shared/domain',
+    '<rootDir>/libs/sales-leads-acquisition/infrastructure-mikro-orm',
+    '<rootDir>/libs/sales-leads-acquisition/shell',
+    '<rootDir>/libs/sales-leads-acquisition/ui-cloud-function',
+    '<rootDir>/libs/shared/domain-technical',
   ],
 };

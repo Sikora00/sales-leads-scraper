@@ -1,6 +1,6 @@
 import { SalesLead, SalesLeadData } from './sales-lead';
 import { City } from './value-objects/city';
-import { Url } from './value-objects/url';
+import { Url } from '@sales-leads/shared/domain-technical';
 import { CompanySize } from './value-objects/company-size';
 import { Country } from './value-objects/country';
 import { Industry } from './value-objects/industry';
