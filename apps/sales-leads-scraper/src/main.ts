@@ -11,8 +11,7 @@ const server: Express = express();
 const createNestServer = async (expressInstance: Express) => {
   const app = await NestFactory.create(
     AppModule,
-    new ExpressAdapter(expressInstance),
-    { logger: false }
+    new ExpressAdapter(expressInstance)
   );
 
   app.useLogger(app.get(Logger));

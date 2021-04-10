@@ -2,36 +2,38 @@
 
 exports[`SalesLead when sales lead is acquired should know its name, website, country, industry, company size, source advertisement, advertisement title and city 1`] = `
 SalesLead {
-  "city": City {
-    "type": Symbol(),
+  "city": Object {
+    "type": undefined,
     "value": "Warsaw",
   },
-  "companySize": CompanySize {
-    "type": Symbol(),
+  "companySize": Object {
+    "type": undefined,
     "value": "50-100",
   },
-  "companyWebsite": Url {
-    "type": Symbol(),
+  "companyWebsite": Object {
+    "type": undefined,
     "value": "https://valueadd.pl/",
   },
-  "country": Country {
-    "type": Symbol(),
+  "country": Object {
+    "type": undefined,
     "value": "Poland",
   },
-  "industry": Industry {
-    "type": Symbol(),
+  "industry": Object {
+    "type": undefined,
     "value": "Software Development",
   },
   "name": "ValueAdd",
   "sourceAdvertisement": SourceAdvertisement {
     "title": "NestJS Developer",
     "type": Symbol(),
-    "url": Url {
-      "type": Symbol(),
+    "url": Object {
+      "type": undefined,
       "value": "https://just-join-it.com/",
     },
   },
   Symbol(): false,
-  Symbol(): Array [],
+  Symbol(): Array [
+    NewSalesLeadAcquiredEvent {},
+  ],
 }
 `;

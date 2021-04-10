@@ -259,6 +259,154 @@
           }
         }
       }
+    },
+    "sales-leads-acquisition-infrastructure-mikro-orm": {
+      "root": "libs/sales-leads-acquisition/infrastructure-mikro-orm",
+      "sourceRoot": "libs/sales-leads-acquisition/infrastructure-mikro-orm/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sales-leads-acquisition/infrastructure-mikro-orm/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/sales-leads-acquisition/infrastructure-mikro-orm"
+          ],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/infrastructure-mikro-orm/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "integration": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/sales-leads-acquisition/infrastructure-mikro-orm"
+          ],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/infrastructure-mikro-orm/jest-integration.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-acquisition/infrastructure-mikro-orm",
+            "tsConfig": "libs/sales-leads-acquisition/infrastructure-mikro-orm/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/infrastructure-mikro-orm/package.json",
+            "main": "libs/sales-leads-acquisition/infrastructure-mikro-orm/src/index.ts",
+            "assets": [
+              "libs/sales-leads-acquisition/infrastructure-mikro-orm/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "sales-leads-acquisition-shell": {
+      "root": "libs/sales-leads-acquisition/shell",
+      "sourceRoot": "libs/sales-leads-acquisition/shell/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/sales-leads-acquisition/shell/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/sales-leads-acquisition/shell"],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-acquisition/shell",
+            "tsConfig": "libs/sales-leads-acquisition/shell/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/shell/package.json",
+            "main": "libs/sales-leads-acquisition/shell/src/index.ts",
+            "assets": ["libs/sales-leads-acquisition/shell/*.md"]
+          }
+        }
+      }
+    },
+    "sales-leads-acquisition-ui-cloud-function": {
+      "root": "libs/sales-leads-acquisition/ui-cloud-function",
+      "sourceRoot": "libs/sales-leads-acquisition/ui-cloud-function/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sales-leads-acquisition/ui-cloud-function/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/sales-leads-acquisition/ui-cloud-function"
+          ],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/ui-cloud-function/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-acquisition/ui-cloud-function",
+            "tsConfig": "libs/sales-leads-acquisition/ui-cloud-function/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/ui-cloud-function/package.json",
+            "main": "libs/sales-leads-acquisition/ui-cloud-function/src/index.ts",
+            "assets": ["libs/sales-leads-acquisition/ui-cloud-function/*.md"]
+          }
+        }
+      }
+    },
+    "shared-domain-technical": {
+      "root": "libs/shared/domain-technical",
+      "sourceRoot": "libs/shared/domain-technical/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/domain-technical/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/domain-technical"],
+          "options": {
+            "jestConfig": "libs/shared/domain-technical/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/shared/domain-technical",
+            "tsConfig": "libs/shared/domain-technical/tsconfig.lib.json",
+            "packageJson": "libs/shared/domain-technical/package.json",
+            "main": "libs/shared/domain-technical/src/index.ts",
+            "assets": ["libs/shared/domain-technical/*.md"]
+          }
+        }
+      }
     }
   }
 }
