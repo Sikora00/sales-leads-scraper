@@ -26,4 +26,10 @@ import { MikroORM } from '@mikro-orm/core';
     }),
   ],
 })
-export class MikroOrmRootModule {}
+export class MikroOrmRootModule implements OnModuleInit {
+  constructor(private readonly orm: MikroORM) {}
+  async onModuleInit(): Promise<void> {
+    const generator = this.orm.getSchemaGenerator();
+    await generator.updateSchema();
+  }
+}

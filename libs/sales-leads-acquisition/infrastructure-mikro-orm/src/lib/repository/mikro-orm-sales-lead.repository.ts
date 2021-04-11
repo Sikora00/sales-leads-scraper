@@ -9,9 +9,17 @@ export class MikroOrmSalesLeadRepository implements SalesLeadRepository {
     @InjectRepository(SalesLeadEntity)
     private mikroOrmRepo: EntityRepository<SalesLeadEntity>
   ) {}
-  save(salesLead: SalesLead): Promise<void> {
-    return this.mikroOrmRepo.persistAndFlush(
-      SalesLeadEntity.fromSalesLead(salesLead)
-    );
+
+  save(salesLeads: SalesLead | SalesLead[]): Promise<void> {
+    if (Array.isArray(salesLeads)) {
+      salesLeads
+        .map((salesLead) => SalesLeadEntity.fromSalesLead(salesLead))
+        .forEach((salesLead) => this.mikroOrmRepo.persist(salesLead));
+      return this.mikroOrmRepo.flush();
+    } else {
+      return this.mikroOrmRepo.persistAndFlush(
+        SalesLeadEntity.fromSalesLead(salesLeads as SalesLead)
+      );
+    }
   }
 }

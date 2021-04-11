@@ -42,7 +42,11 @@
       ],
       "@sales-leads/shared/domain-technical": [
         "libs/shared/domain-technical/src/index.ts"
-      ]
+      ],
+      "@sales-leads/sales-leads-acquisition/infrastructure-crawler-step-stone": [
+        "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/src/index.ts"
+      ],
+      "@sales-leads/shared/util-array": ["libs/shared/util-array/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

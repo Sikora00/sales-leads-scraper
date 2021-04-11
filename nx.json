@@ -45,6 +45,10 @@
     "sales-leads-acquisition-ui-cloud-function": {
       "tags": ["scope:sales-leads-acquisition", "type:ui"]
     },
-    "shared-domain-technical": { "tags": ["scope:shared", "type:domain"] }
+    "shared-domain-technical": { "tags": ["scope:shared", "type:domain"] },
+    "sales-leads-acquisition-infrastructure-crawler-step-stone": {
+      "tags": ["scope:sales-leads-acquisition", "type:infrastructure"]
+    },
+    "shared-util-array": { "tags": ["scope:shared", "type:util"] }
   }
 }

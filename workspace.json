@@ -407,6 +407,76 @@
           }
         }
       }
+    },
+    "sales-leads-acquisition-infrastructure-crawler-step-stone": {
+      "root": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone",
+      "sourceRoot": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/sales-leads-acquisition/infrastructure-crawler-step-stone"
+          ],
+          "options": {
+            "jestConfig": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sales-leads-acquisition/infrastructure-crawler-step-stone",
+            "tsConfig": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/package.json",
+            "main": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/src/index.ts",
+            "assets": [
+              "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "shared-util-array": {
+      "root": "libs/shared/util-array",
+      "sourceRoot": "libs/shared/util-array/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util-array/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-array"],
+          "options": {
+            "jestConfig": "libs/shared/util-array/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/shared/util-array",
+            "tsConfig": "libs/shared/util-array/tsconfig.lib.json",
+            "packageJson": "libs/shared/util-array/package.json",
+            "main": "libs/shared/util-array/src/index.ts",
+            "assets": ["libs/shared/util-array/*.md"]
+          }
+        }
+      }
     }
   }
 }
