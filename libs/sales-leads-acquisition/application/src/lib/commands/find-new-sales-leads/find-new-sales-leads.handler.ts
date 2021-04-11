@@ -39,15 +39,13 @@ export class FindNewSalesLeadsHandler
       .map((result: PromiseFulfilledResult<SalesLeadData[]>) => result.value);
     const flatResults = results.flat();
 
-    await Promise.allSettled(
-      flatResults.map((result) => {
-        const salesLead = this.publisher.mergeObjectContext(
-          SalesLead.acquired(result)
-        );
-        this.repository.save(salesLead);
-        salesLead.commit();
-      })
+    const salesLeads = flatResults.map((result) =>
+      this.publisher.mergeObjectContext(SalesLead.acquired(result))
     );
+
+    await this.repository.save(salesLeads);
+
+    salesLeads.forEach((salesLead) => salesLead.commit());
 
     this.eventBus.publish(new NewSalesLeadsAcquiredEvent(flatResults.length));
   }

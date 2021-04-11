@@ -7,28 +7,28 @@ import {
   SalesLead,
   SourceAdvertisement,
 } from '@sales-leads/sales-leads-acquisition/domain';
-import { Url } from '@sales-leads/shared/domain-technical';
+import { Url, Uuid } from '@sales-leads/shared/domain-technical';
 import { plainToClass } from 'class-transformer';
 
 @Entity({ tableName: 'sales_leads' })
 export class SalesLeadEntity {
-  @Property()
-  private city!: string;
+  @Property({ nullable: true })
+  private city: string | null = null;
 
-  @Property()
-  private companySize!: string;
+  @Property({ nullable: true })
+  private companySize: string | null = null;
 
-  @Property()
-  private companyWebsite!: string;
+  @Property({ nullable: true })
+  private companyWebsite: string | null = null;
 
-  @Property()
-  private country!: string;
+  @Property({ nullable: true })
+  private country: string | null = null;
 
   @PrimaryKey()
   private id!: string;
 
-  @Property()
-  private industry!: string;
+  @Property({ nullable: true })
+  private industry: string | null = null;
 
   @Property()
   private name!: string;
@@ -44,13 +44,18 @@ export class SalesLeadEntity {
   }
 
   static fromSalesLead(salesLead: SalesLead): SalesLeadEntity {
+    const city = salesLead.getCity();
+    const companySize = salesLead.getCompanySize();
+    const companyWebsite = salesLead.getCompanyWebsite();
+    const country = salesLead.getCountry();
+    const industry = salesLead.getIndustry();
     return SalesLeadEntity.build({
-      city: salesLead.getCity().value,
-      companySize: salesLead.getCompanySize().value,
-      companyWebsite: salesLead.getCompanyWebsite().toString(),
-      country: salesLead.getCountry().value,
-      id: '4ef28c8d-1ede-45e2-9deb-4f8a815c562d',
-      industry: salesLead.getIndustry().value,
+      city: city ? city.value : null,
+      companySize: companySize ? companySize.value : null,
+      companyWebsite: companyWebsite ? companyWebsite.toString() : null,
+      country: country ? country.value : null,
+      id: Uuid.generate().value,
+      industry: industry ? industry.value : null,
       name: salesLead.getName(),
       sourceAdvertisementTitle: salesLead.getSourceAdvertisement().title,
       sourceAdvertisementUrl: salesLead.getSourceAdvertisement().url.toString(),
@@ -74,12 +79,12 @@ export class SalesLeadEntity {
 }
 
 export interface SalesLeadEntityData {
-  city: string;
-  companySize: string;
-  companyWebsite: string;
-  country: string;
+  city: string | null;
+  companySize: string | null;
+  companyWebsite: string | null;
+  country: string | null;
   id: string;
-  industry: string;
+  industry: string | null;
   name: string;
   sourceAdvertisementTitle: string;
   sourceAdvertisementUrl: string;

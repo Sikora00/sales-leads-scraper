@@ -8,11 +8,11 @@ import { City } from './value-objects/city';
 import { NewSalesLeadAcquiredEvent } from './events/new-sales-lead-acquired.event';
 
 export class SalesLead extends AggregateRoot {
-  private city: City;
-  private companySize: CompanySize;
-  private companyWebsite: Url;
-  private country: Country;
-  private industry: Industry;
+  private city: City | null;
+  private companySize: CompanySize | null;
+  private companyWebsite: Url | null;
+  private country: Country | null;
+  private industry: Industry | null;
   private name: string;
   private sourceAdvertisement: SourceAdvertisement;
 
@@ -37,23 +37,23 @@ export class SalesLead extends AggregateRoot {
     return new SalesLead(data);
   }
 
-  getCity(): City {
+  getCity(): City | null {
     return this.city;
   }
 
-  getCompanySize(): CompanySize {
+  getCompanySize(): CompanySize | null {
     return this.companySize;
   }
 
-  getCompanyWebsite(): Url {
+  getCompanyWebsite(): Url | null {
     return this.companyWebsite;
   }
 
-  getCountry(): Country {
+  getCountry(): Country | null {
     return this.country;
   }
 
-  getIndustry(): Industry {
+  getIndustry(): Industry | null {
     return this.industry;
   }
 
@@ -67,11 +67,11 @@ export class SalesLead extends AggregateRoot {
 }
 
 export interface SalesLeadData {
-  city: City;
-  companySize: CompanySize;
-  companyWebsite: Url;
-  country: Country;
-  industry: Industry;
+  city: City | null;
+  companySize: CompanySize | null;
+  companyWebsite: Url | null;
+  country: Country | null;
+  industry: Industry | null;
   name: string;
   sourceAdvertisement: SourceAdvertisement;
 }

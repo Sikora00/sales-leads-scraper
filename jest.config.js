@@ -11,5 +11,7 @@ module.exports = {
     '<rootDir>/libs/sales-leads-acquisition/shell',
     '<rootDir>/libs/sales-leads-acquisition/ui-cloud-function',
     '<rootDir>/libs/shared/domain-technical',
+    '<rootDir>/libs/sales-leads-acquisition/infrastructure-crawler-step-stone',
+    '<rootDir>/libs/shared/util-array',
   ],
 };
