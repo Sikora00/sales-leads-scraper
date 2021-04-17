@@ -9,9 +9,10 @@ export class SalesLeadsAcquisitionApplicationModule {
   static withInfrastructure(
     infrastructure: ModuleMetadata['imports']
   ): DynamicModule {
+    infrastructure = infrastructure ?? [];
     return {
       module: SalesLeadsAcquisitionApplicationModule,
-      imports: [CqrsModule, ...(infrastructure ?? [])],
+      imports: [CqrsModule, ...infrastructure],
       providers: [
         FindNewSalesLeadsHandler,
         SalesLeadsAcquisitionFacade,
@@ -21,7 +22,7 @@ export class SalesLeadsAcquisitionApplicationModule {
           inject: [...finders],
         },
       ],
-      exports: [SalesLeadsAcquisitionFacade],
+      exports: [SalesLeadsAcquisitionFacade, ...infrastructure],
     };
   }
 }

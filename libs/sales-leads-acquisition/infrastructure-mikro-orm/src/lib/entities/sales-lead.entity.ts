@@ -1,4 +1,4 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { DateType, Entity, PrimaryKey, Property } from '@mikro-orm/core';
 import {
   City,
   CompanySize,
@@ -7,25 +7,25 @@ import {
   SalesLead,
   SourceAdvertisement,
 } from '@sales-leads/sales-leads-acquisition/domain';
-import { Url, Uuid } from '@sales-leads/shared/domain-technical';
+import { Url } from '@sales-leads/shared/domain-technical';
 import { plainToClass } from 'class-transformer';
 
 @Entity({ tableName: 'sales_leads' })
 export class SalesLeadEntity {
+  @Property({ type: DateType })
+  private addedAt = new Date();
+
   @Property({ nullable: true })
   private city: string | null = null;
 
   @Property({ nullable: true })
   private companySize: string | null = null;
 
-  @Property({ nullable: true })
+  @PrimaryKey()
   private companyWebsite: string | null = null;
 
   @Property({ nullable: true })
   private country: string | null = null;
-
-  @PrimaryKey()
-  private id!: string;
 
   @Property({ nullable: true })
   private industry: string | null = null;
@@ -36,7 +36,7 @@ export class SalesLeadEntity {
   @Property()
   private sourceAdvertisementTitle!: string;
 
-  @Property()
+  @Property({ columnType: 'varchar(2083)' })
   private sourceAdvertisementUrl!: string;
 
   private static build(data: SalesLeadEntityData): SalesLeadEntity {
@@ -54,7 +54,6 @@ export class SalesLeadEntity {
       companySize: companySize ? companySize.value : null,
       companyWebsite: companyWebsite ? companyWebsite.toString() : null,
       country: country ? country.value : null,
-      id: Uuid.generate().value,
       industry: industry ? industry.value : null,
       name: salesLead.getName(),
       sourceAdvertisementTitle: salesLead.getSourceAdvertisement().title,
@@ -64,11 +63,11 @@ export class SalesLeadEntity {
 
   toSalesLead(): SalesLead {
     return SalesLead.restore({
-      city: new City(this.city),
-      companySize: new CompanySize(this.companySize),
-      companyWebsite: new Url(this.companyWebsite),
-      country: new Country(this.country),
-      industry: new Industry(this.industry),
+      city: this.city ? new City(this.city) : null,
+      companySize: this.companySize ? new CompanySize(this.companySize) : null,
+      companyWebsite: this.companyWebsite ? new Url(this.companyWebsite) : null,
+      country: this.country ? new Country(this.country) : null,
+      industry: this.industry ? new Industry(this.industry) : null,
       name: this.name,
       sourceAdvertisement: new SourceAdvertisement(
         new Url(this.sourceAdvertisementUrl),
@@ -83,7 +82,6 @@ export interface SalesLeadEntityData {
   companySize: string | null;
   companyWebsite: string | null;
   country: string | null;
-  id: string;
   industry: string | null;
   name: string;
   sourceAdvertisementTitle: string;

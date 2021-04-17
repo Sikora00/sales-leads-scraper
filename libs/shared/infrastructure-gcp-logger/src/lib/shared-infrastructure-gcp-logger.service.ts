@@ -24,6 +24,11 @@ export class SharedInfrastructureGcpLoggerService implements Logger {
   }
 
   error(message: Message, trace?: string, context?: string): void {
+    if (typeof message === 'object' && message?.data?.error) {
+      const error: Error = message.data.error as Error;
+      message.data.error = { name: error.name, message: error.message };
+      message.data.stack = message.data.stack ?? error.stack;
+    }
     this.createLog('error', message, context);
   }
 

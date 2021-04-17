@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  NX_BRANCH: ${{ github.event.number }}
+  NX_BRANCH: "main"
   NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
@@ -156,4 +156,4 @@ jobs:
           credentials: ${{ secrets.GOOGLE_CLOUD_KEY }}
           project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           source_dir: ./dist/apps/sales-leads-scraper
-          env_vars: IS_IN_CLOUD=true
+          env_vars: IS_IN_CLOUD=true,DB_DATABASE=${{ secrets.DB_DATABASE }},DB_PORT=${{ secrets.DB_PORT }},DB_PASSWORD=${{ secrets.DB_PASSWORD }},DB_USERNAME=${{ secrets.DB_USERNAME }},DB_HOST=${{ secrets.DB_HOST }},DB_TYPE=${{ secrets.DB_TYPE }}

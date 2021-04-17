@@ -23,22 +23,28 @@ export class JobDetailsPageScraper {
   ) {}
 
   async getCompanyUrl(): Promise<StepStoneCompanyUrl> {
-    const result = await this.scraper
-      .scrape<{ url: string }>(this.jobUrl, {
-        url: { selector: '.at-header-company-name', attr: 'href' },
-      })
-      .then(({ data }: { data: { url: string } }) =>
-        new StepStoneCompanyJobOffersUrl(data.url).toCompanyPage()
-      );
+    const result = await this.scraper.scrape<{ url: string }>(this.jobUrl, {
+      url: { selector: '.at-header-company-name', attr: 'href' },
+    });
 
-    this.logger.log(
+    this.logger.debug(
       {
         message: 'getCompanyUrl result',
-        data: { jobUrl: this.jobUrl.toString(), companyUrl: result.toString() },
+        data: { jobUrl: this.jobUrl.toString(), result: result.data },
       },
       'JobDetailsPageScraper'
     );
 
-    return result;
+    if (!result.data.url) {
+      this.logger.error(
+        {
+          message: 'getCompanyUrl failed',
+          data: { jobUrl: this.jobUrl.toString(), result: result.body },
+        },
+        'JobDetailsPageScraper'
+      );
+    }
+
+    return new StepStoneCompanyJobOffersUrl(result.data.url).toCompanyPage();
   }
 }

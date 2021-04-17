@@ -5,6 +5,7 @@ import {
   JobDetailsPageScraperToken,
 } from '../scrapers/job-details-page.scraper';
 import { Logger } from '@sales-leads/shared/application';
+import { StepStoneJobPreviewUrl } from '../urls/step-stone-job-preview.url';
 
 @Injectable()
 export class JobDetailsPageScrapersAggregate {
@@ -14,12 +15,14 @@ export class JobDetailsPageScrapersAggregate {
     private scraperFactory: JobDetailsPageScraperFactory
   ) {}
 
-  async getCompaniesUrlsFromJobs(jobsUrls: Url[]): Promise<Url[]> {
+  async getCompaniesUrlsFromJobs(
+    jobsUrls: StepStoneJobPreviewUrl[]
+  ): Promise<Url[]> {
     const result = await Promise.all(
       jobsUrls.map((jobUrl) => this.scraperFactory(jobUrl).getCompanyUrl())
     );
 
-    this.logger.log(
+    this.logger.debug(
       {
         message: 'getCompaniesUrlsFromJobs result',
         data: { result },

@@ -11,12 +11,12 @@ export class Url extends TinyTypeOf<string>() {
   constructor(value: string) {
     super(value);
     ensure(
-      this.constructor.name,
+      `${this.constructor.name} [${value}]`,
       value,
       isDefined(),
       Predicate.to(`be an URL`, isURL)
-    ),
-      (this.innerValue = new URL(value));
+    );
+    this.innerValue = new URL(value);
   }
 
   toString(): string {
@@ -31,7 +31,9 @@ export class Url extends TinyTypeOf<string>() {
 
   addQueryParam(key: string, value: string): Url {
     const newUrl = new URL(this.innerValue.toString());
-    newUrl.searchParams.append(key, value);
+    newUrl.searchParams.has(key)
+      ? newUrl.searchParams.set(key, value)
+      : newUrl.searchParams.append(key, value);
     return new (this.constructor as Class<Url>)(newUrl.toString());
   }
 }

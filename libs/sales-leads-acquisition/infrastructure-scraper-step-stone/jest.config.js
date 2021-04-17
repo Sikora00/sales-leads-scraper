@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'sales-leads-acquisition-infrastructure-crawler-step-stone',
+  displayName: 'sales-leads-acquisition-infrastructure-scraper-step-stone',
   preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../coverage/libs/sales-leads-acquisition/infrastructure-crawler-step-stone',
+    '../../../coverage/libs/sales-leads-acquisition/infrastructure-scraper-step-stone',
 };

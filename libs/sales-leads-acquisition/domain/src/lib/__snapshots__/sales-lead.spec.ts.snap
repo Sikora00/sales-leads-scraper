@@ -11,8 +11,9 @@ SalesLead {
     "value": "50-100",
   },
   "companyWebsite": Object {
+    "innerValue": "https://valueadd.pl/",
     "type": undefined,
-    "value": "https://valueadd.pl/",
+    "value": "https://valueadd.pl",
   },
   "country": Object {
     "type": undefined,
@@ -27,8 +28,9 @@ SalesLead {
     "title": "NestJS Developer",
     "type": Symbol(),
     "url": Object {
+      "innerValue": "https://just-join-it.com/",
       "type": undefined,
-      "value": "https://just-join-it.com/",
+      "value": "https://just-join-it.com",
     },
   },
   Symbol(): false,

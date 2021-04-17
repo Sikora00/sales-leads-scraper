@@ -5,6 +5,8 @@ import { CqrsModule, EventBus } from '@nestjs/cqrs';
 import { createSpyObj } from 'jest-createspyobj';
 import { SalesLeadsFindersToken } from '../../ports/sales-leads-finder';
 import { FindNewSalesLeadsCommand } from './find-new-sales-leads.command';
+import { Logger } from '@sales-leads/shared/application';
+import { of } from 'rxjs';
 
 describe('FindNewSalesLeadsHandler', () => {
   let out: FindNewSalesLeadsHandler;
@@ -15,8 +17,13 @@ describe('FindNewSalesLeadsHandler', () => {
       out = sandbox.get(FindNewSalesLeadsHandler);
       await out.execute(new FindNewSalesLeadsCommand());
     });
-    it('should save all of them', () => {
-      expect(sandbox.get(SalesLeadRepository).save).toHaveBeenCalledTimes(10);
+    it('should save all of them in one transaction', () => {
+      const repository: jest.Mocked<SalesLeadRepository> = sandbox.get(
+        SalesLeadRepository
+      );
+      expect(repository.save).toHaveBeenCalledWith(
+        expect.objectContaining({ length: 10 })
+      );
     });
     it('should publish an event about each sales lead and a summary event', () => {
       expect(sandbox.get(EventBus).publish).toHaveBeenCalledTimes(11);
@@ -26,7 +33,7 @@ describe('FindNewSalesLeadsHandler', () => {
 
 const fixture = {
   get10NewSalesLeadsSandbox: async (): Promise<TestingModule> => {
-    return await Test.createTestingModule({
+    const sandbox = await Test.createTestingModule({
       imports: [CqrsModule],
       providers: [
         FindNewSalesLeadsHandler,
@@ -36,12 +43,21 @@ const fixture = {
         },
         {
           provide: SalesLeadsFindersToken,
-          useValue: [{ find: () => Promise.resolve(new Array(10).fill({})) }],
+          useValue: [{ find: () => of(new Array(10).fill({})) }],
+        },
+        {
+          provide: Logger,
+          useValue: createSpyObj(Logger, ['log', 'error']),
         },
       ],
     })
       .overrideProvider(EventBus)
       .useValue(createSpyObj(EventBus))
       .compile();
+
+    (sandbox.get(
+      SalesLeadRepository
+    ) as jest.Mocked<SalesLeadRepository>).save.mockResolvedValue(undefined);
+    return sandbox;
   },
 };
