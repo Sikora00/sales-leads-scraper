@@ -11,11 +11,13 @@ import {
 } from '../../ports/sales-leads-finder';
 import { Inject } from '@nestjs/common';
 import { SalesLeadRepository } from '../../ports/sales-lead.repository';
+import { SalesLead } from '@sales-leads/sales-leads-acquisition/domain';
 import {
-  SalesLead,
-  SalesLeadData,
-} from '@sales-leads/sales-leads-acquisition/domain';
-import { NewSalesLeadsAcquiredEvent } from '@sales-leads/shared/application';
+  Logger,
+  NewSalesLeadsAcquiredEvent,
+} from '@sales-leads/shared/application';
+import { from } from 'rxjs';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 @CommandHandler(FindNewSalesLeadsCommand)
 export class FindNewSalesLeadsHandler
@@ -23,30 +25,64 @@ export class FindNewSalesLeadsHandler
   constructor(
     @Inject(SalesLeadsFindersToken) private finders: ISalesLeadsFinder[],
     private eventBus: EventBus,
+    private logger: Logger,
     private publisher: EventPublisher,
     private repository: SalesLeadRepository
   ) {}
 
   async execute(command: FindNewSalesLeadsCommand): Promise<void> {
-    const found = await Promise.allSettled(
-      this.finders.map((finder) => finder.find())
+    let countNewSalesLeads = 0;
+    const process$ = this.finders[0].find().pipe(
+      tap((salesLeads) => {
+        countNewSalesLeads += salesLeads.length;
+      }),
+      map((found) =>
+        found.map((result) =>
+          this.publisher.mergeObjectContext(SalesLead.acquired(result))
+        )
+      ),
+      mergeMap((salesLeads) =>
+        from(this.repository.save(salesLeads)).pipe(map(() => salesLeads))
+      ),
+      tap((salesLeads) => salesLeads.forEach((salesLead) => salesLead.commit()))
     );
-    const results = found
-      .filter(
-        (result): result is PromiseFulfilledResult<SalesLeadData[]> =>
-          result.status === 'fulfilled'
+
+    return new Promise((resolve, reject) =>
+      process$.subscribe(
+        (salesLeads) =>
+          this.logger.log(
+            {
+              message: 'Found these sales leads',
+              data: { salesLeads },
+            },
+
+            'FindNewSalesLeadsHandler'
+          ),
+        (e) => {
+          this.logger.error(
+            { message: 'An error during looking for sales leads', data: { e } },
+            undefined,
+
+            'FindNewSalesLeadsHandler'
+          );
+
+          reject(e);
+        },
+
+        () => {
+          this.logger.log(
+            {
+              message: 'Completed searching for sales leads',
+              data: { countNewSalesLeads },
+            },
+            'FindNewSalesLeadsHandler'
+          );
+          this.eventBus.publish(
+            new NewSalesLeadsAcquiredEvent(countNewSalesLeads)
+          );
+          resolve();
+        }
       )
-      .map((result: PromiseFulfilledResult<SalesLeadData[]>) => result.value);
-    const flatResults = results.flat();
-
-    const salesLeads = flatResults.map((result) =>
-      this.publisher.mergeObjectContext(SalesLead.acquired(result))
     );
-
-    await this.repository.save(salesLeads);
-
-    salesLeads.forEach((salesLead) => salesLead.commit());
-
-    this.eventBus.publish(new NewSalesLeadsAcquiredEvent(flatResults.length));
   }
 }

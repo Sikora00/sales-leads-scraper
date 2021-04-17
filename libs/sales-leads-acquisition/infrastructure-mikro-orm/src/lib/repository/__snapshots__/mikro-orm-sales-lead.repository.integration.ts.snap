@@ -3,11 +3,11 @@
 exports[`MikroOrmSalesLeadRepository Integration when saving new sales lead new record should be saved in the database 1`] = `
 Array [
   Object {
+    "addedAt": "2021-04-17",
     "city": "Warsaw",
     "companySize": "50-100",
     "companyWebsite": "https://valueadd.pl/",
     "country": "PL",
-    "id": "4ef28c8d-1ede-45e2-9deb-4f8a815c562d",
     "industry": "IT",
     "name": "ValueAdd",
     "sourceAdvertisementTitle": "NestJS Developer",

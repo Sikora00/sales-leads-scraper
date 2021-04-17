@@ -24,7 +24,7 @@ export class CompanyDetailsPageScrapersAggregate {
       )
     );
 
-    this.logger.log(
+    this.logger.debug(
       {
         message: 'getCompaniesData result',
         data: { result },

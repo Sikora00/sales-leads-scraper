@@ -31,7 +31,7 @@ export class JobDetailsPageScraper {
         new StepStoneCompanyJobOffersUrl(data.url).toCompanyPage()
       );
 
-    this.logger.log(
+    this.logger.debug(
       {
         message: 'getCompanyUrl result',
         data: { jobUrl: this.jobUrl.toString(), companyUrl: result.toString() },

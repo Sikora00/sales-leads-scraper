@@ -47,7 +47,8 @@
                 "onlyDependOnLibsWithTags": [
                   "type:application",
                   "type:domain",
-                  "type:infrastructure"
+                  "type:infrastructure",
+                  "type:util"
                 ]
               },
               {

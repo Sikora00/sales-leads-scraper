@@ -60,7 +60,7 @@ export class CompanyDetailsPageScraper {
         name: { selector: '.at-company-hub-block-header div:nth-child(2) h1' },
       })
       .then(({ data }) => this.convertScrapedCompanyData(data));
-    this.logger.log(
+    this.logger.debug(
       {
         message: 'getCompanyData result',
         data: { result, url: this.companyDetailsUrl.toString() },

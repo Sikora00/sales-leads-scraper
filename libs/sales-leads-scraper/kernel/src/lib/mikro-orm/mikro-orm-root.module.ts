@@ -9,13 +9,19 @@ import { MikroORM } from '@mikro-orm/core';
     ConfigModule.forFeature(dbConfig),
     MikroOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => {
-        const { database, type, port, username, password } = configService.get(
-          'database'
-        );
+        const {
+          database,
+          host,
+          type,
+          port,
+          username,
+          password,
+        } = configService.get('database');
 
         return {
           autoLoadEntities: true,
           dbName: database,
+          host,
           type,
           port,
           user: username,

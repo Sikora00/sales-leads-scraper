@@ -19,7 +19,7 @@ export class JobDetailsPageScrapersAggregate {
       jobsUrls.map((jobUrl) => this.scraperFactory(jobUrl).getCompanyUrl())
     );
 
-    this.logger.log(
+    this.logger.debug(
       {
         message: 'getCompaniesUrlsFromJobs result',
         data: { result },

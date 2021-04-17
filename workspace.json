@@ -408,26 +408,26 @@
         }
       }
     },
-    "sales-leads-acquisition-infrastructure-crawler-step-stone": {
-      "root": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone",
-      "sourceRoot": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/src",
+    "sales-leads-acquisition-infrastructure-scraper-step-stone": {
+      "root": "libs/sales-leads-acquisition/infrastructure-scraper-step-stone",
+      "sourceRoot": "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/**/*.ts"
+              "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/**/*.ts"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/sales-leads-acquisition/infrastructure-crawler-step-stone"
+            "coverage/libs/sales-leads-acquisition/infrastructure-scraper-step-stone"
           ],
           "options": {
-            "jestConfig": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/jest.config.js",
+            "jestConfig": "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -435,12 +435,12 @@
           "executor": "@nrwl/node:package",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/libs/sales-leads-acquisition/infrastructure-crawler-step-stone",
-            "tsConfig": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/tsconfig.lib.json",
-            "packageJson": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/package.json",
-            "main": "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/src/index.ts",
+            "outputPath": "dist/libs/sales-leads-acquisition/infrastructure-scraper-step-stone",
+            "tsConfig": "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/tsconfig.lib.json",
+            "packageJson": "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/package.json",
+            "main": "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/src/index.ts",
             "assets": [
-              "libs/sales-leads-acquisition/infrastructure-crawler-step-stone/*.md"
+              "libs/sales-leads-acquisition/infrastructure-scraper-step-stone/*.md"
             ]
           }
         }

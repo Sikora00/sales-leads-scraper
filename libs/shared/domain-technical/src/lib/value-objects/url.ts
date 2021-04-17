@@ -31,7 +31,9 @@ export class Url extends TinyTypeOf<string>() {
 
   addQueryParam(key: string, value: string): Url {
     const newUrl = new URL(this.innerValue.toString());
-    newUrl.searchParams.append(key, value);
+    newUrl.searchParams.has(key)
+      ? newUrl.searchParams.set(key, value)
+      : newUrl.searchParams.append(key, value);
     return new (this.constructor as Class<Url>)(newUrl.toString());
   }
 }

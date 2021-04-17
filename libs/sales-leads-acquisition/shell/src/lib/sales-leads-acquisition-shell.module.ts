@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { SalesLeadsAcquisitionApplicationModule } from '@sales-leads/sales-leads-acquisition/application';
 import { SalesLeadsAcquisitionInfrastructureMikroOrmModule } from '@sales-leads/sales-leads-acquisition/infrastructure-mikro-orm';
-import { SalesLeadsAcquisitionInfrastructureCrawlerStepStoneModule } from '@sales-leads/sales-leads-acquisition/infrastructure-crawler-step-stone';
+import { SalesLeadsAcquisitionInfrastructureScraperStepStoneModule } from '@sales-leads/sales-leads-acquisition/infrastructure-scraper-step-stone';
 
 @Module({
   imports: [
     SalesLeadsAcquisitionApplicationModule.withInfrastructure([
       SalesLeadsAcquisitionInfrastructureMikroOrmModule,
-      SalesLeadsAcquisitionInfrastructureCrawlerStepStoneModule,
+      SalesLeadsAcquisitionInfrastructureScraperStepStoneModule.withInfrastructure(
+        [SalesLeadsAcquisitionInfrastructureMikroOrmModule]
+      ),
     ]),
   ],
   exports: [SalesLeadsAcquisitionApplicationModule],
