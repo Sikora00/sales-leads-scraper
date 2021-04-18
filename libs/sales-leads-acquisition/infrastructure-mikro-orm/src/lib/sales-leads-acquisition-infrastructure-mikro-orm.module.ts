@@ -8,7 +8,7 @@ import {
 } from '@sales-leads/sales-leads-acquisition/application';
 import { MikroOrmSalesLeadRepository } from './repository/mikro-orm-sales-lead.repository';
 import { MikroOrmWasJobProcessedService } from './adapters/mikro-orm-was-job-processed.service';
-import { MikroOrmIsSalesLeadProcessedOrDuringProcessService } from './repository/mikro-orm-is-sales-lead-processed-or-during-process.service';
+import { MikroOrmIsSalesLeadProcessedOrDuringProcessService } from './adapters/mikro-orm-is-sales-lead-processed-or-during-process.service';
 
 @Module({
   imports: [MikroOrmModule.forFeature([SalesLeadEntity])],

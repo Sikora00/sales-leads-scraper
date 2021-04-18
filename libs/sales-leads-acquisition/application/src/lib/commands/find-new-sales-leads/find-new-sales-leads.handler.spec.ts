@@ -15,7 +15,7 @@ describe('FindNewSalesLeadsHandler', () => {
     beforeAll(async () => {
       sandbox = await fixture.get10NewSalesLeadsSandbox();
       out = sandbox.get(FindNewSalesLeadsHandler);
-      await out.execute(new FindNewSalesLeadsCommand());
+      await out.execute(new FindNewSalesLeadsCommand(['Angular']));
     });
     it('should save all of them in one transaction', () => {
       const repository: jest.Mocked<SalesLeadRepository> = sandbox.get(

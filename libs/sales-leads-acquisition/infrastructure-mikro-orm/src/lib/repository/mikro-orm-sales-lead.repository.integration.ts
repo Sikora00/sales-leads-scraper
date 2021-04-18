@@ -10,6 +10,8 @@ describe('MikroOrmSalesLeadRepository Integration', () => {
   beforeAll(async () => {
     sandbox = await Fixtures.getSandbox();
     await Fixtures.buildSchema(sandbox);
+    jest.useFakeTimers('modern');
+    jest.setSystemTime(new Date('2021-04-17'));
   });
   describe('when saving new sales lead', () => {
     beforeAll(async () => {

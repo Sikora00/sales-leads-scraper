@@ -6,12 +6,18 @@ import { Url } from '@sales-leads/shared/domain-technical';
 
 export class MikroOrmWasJobProcessedService
   implements WasJobAlreadyProcessedService {
+  private readonly cache: Record<string, boolean> = {};
   constructor(
     @InjectRepository(SalesLeadEntity)
     private mikroOrmRepo: EntityRepository<SalesLeadEntity>
   ) {}
 
   async check(sourceAdvertisementUrl: Url): Promise<boolean> {
+    if (this.cache[sourceAdvertisementUrl.toString()]) {
+      return true;
+    } else {
+      this.cache[sourceAdvertisementUrl.toString()] = true;
+    }
     return !!(await this.mikroOrmRepo.findOne({
       sourceAdvertisementUrl: sourceAdvertisementUrl.toString(),
     }));
