@@ -77,9 +77,9 @@ export class ScrapingOrchestrator {
 
   private static scrapeNextListPrediction(jobs: JobsListItem[]): boolean {
     const looksLikeThereAreMoreJobs = jobs.length >= 25;
-    const jobsAreNotOldYet =
-      jobs[jobs.length - 1].addedAt.includes('hours') ||
-      jobs[jobs.length - 1].addedAt.includes('day');
-    return looksLikeThereAreMoreJobs && jobsAreNotOldYet;
+    const jobsAreNotOlderThanOneDay = jobs[jobs.length - 1].addedAt.includes(
+      'hours'
+    );
+    return looksLikeThereAreMoreJobs && jobsAreNotOlderThanOneDay;
   }
 }

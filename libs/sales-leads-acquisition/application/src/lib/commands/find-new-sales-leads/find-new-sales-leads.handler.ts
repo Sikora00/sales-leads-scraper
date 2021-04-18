@@ -16,7 +16,7 @@ import {
   Logger,
   NewSalesLeadsAcquiredEvent,
 } from '@sales-leads/shared/application';
-import { from } from 'rxjs';
+import { from, merge } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
 
 @CommandHandler(FindNewSalesLeadsCommand)
@@ -32,7 +32,10 @@ export class FindNewSalesLeadsHandler
 
   async execute(command: FindNewSalesLeadsCommand): Promise<void> {
     let countNewSalesLeads = 0;
-    const process$ = this.finders[0].find().pipe(
+    const process$ = merge(
+      this.finders.map((finder) => finder.find(command.keyWords))
+    ).pipe(
+      mergeMap((x) => x),
       tap((salesLeads) => {
         countNewSalesLeads += salesLeads.length;
       }),

@@ -6,7 +6,8 @@ import {
 import { SalesLeadData } from '@sales-leads/sales-leads-acquisition/domain';
 import { StepStoneJobsListUrl } from './urls/step-stone-jobs-list.url';
 import { ScrapingOrchestrator } from './scraping.orchestrator';
-import { Observable } from 'rxjs';
+import { merge, Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 @Injectable()
 @SalesLeadsFinder
@@ -16,8 +17,12 @@ export class SalesLeadsAcquisitionInfrastructureScraperStepStoneService
 
   constructor(private orchestrator: ScrapingOrchestrator) {}
 
-  find(): Observable<SalesLeadData[]> {
-    const baseListUrl = this.jobsListUrl.search('Angular').sort('date');
-    return this.orchestrator.start(baseListUrl);
+  find(keyWords: string[]): Observable<SalesLeadData[]> {
+    const baseListUrls = keyWords.map((keyWord) =>
+      this.jobsListUrl.search(keyWord).sort('date')
+    );
+    return merge(
+      baseListUrls.map((baseListUrl) => this.orchestrator.start(baseListUrl))
+    ).pipe(mergeMap((x) => x));
   }
 }

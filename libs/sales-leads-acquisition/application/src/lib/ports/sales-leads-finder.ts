@@ -7,7 +7,7 @@ export const finders = new Set<Type<ISalesLeadsFinder>>();
 export const SalesLeadsFindersToken = Symbol('SalesLeadsFindersToken');
 
 export interface ISalesLeadsFinder {
-  find(): Observable<SalesLeadData[]>;
+  find(keyWords: string[]): Observable<SalesLeadData[]>;
 }
 
 export function SalesLeadsFinder(target: Type<ISalesLeadsFinder>): void {
